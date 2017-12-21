@@ -21,7 +21,8 @@ def health_check():
     return jsonify({
         "message": "I'm alive and well, thank you very much for caring!"
     })
-    
+
+
 @api.route('/discover', methods=['GET'])
 def discover():
     """Returns a random horror movie"""
@@ -31,4 +32,8 @@ def discover():
     data = json.loads(result.text)
     rand = random.randint(0, len(data["results"])-1)
     movie = data["results"][rand]
-    return jsonify(movie)
+    return jsonify({
+        "data": [
+            movie
+        ]
+    })
